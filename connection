@@ -1,0 +1,10 @@
+import cx_Oracle
+
+conn_str = u'etlapp/etlappstg@lvsspldb16.qa.paypal.com:2127/QADBAA9O'
+conn = cx_Oracle.connect(conn_str)
+c = conn.cursor()
+print(conn.version.split("."))
+c.execute(u'select * from persons')
+for row in c:
+    print row[0], "-", row[1]
+conn.close()
