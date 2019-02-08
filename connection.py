@@ -43,6 +43,25 @@ def CompareTwoList(List1,List2):
 
 ls_index=CompareTwoList(Excel_column_list,Mapping_column_list)
   
+
+ls_cols = df_excel.columns.tolist()
+ls_col_list=[]
+
+for j in ls_index:
+    ls_col_list.append(ls_cols[j])
+    
+df_excel = df_excel[ls_col_list]
+
+Sql_execute="insert into Alti_PayPal_Mapping ("
+for j in Table_Column_Name:
+    Sql_execute=Sql_execute+str(j)+', '
+Sql_execute = Sql_execute[:-2]    
+Sql_execute=Sql_execute+' ) values ('
+for i in ls_index:
+    Sql_execute=Sql_execute+':'+str(i)+', '
+Sql_execute = Sql_execute[:-2]
+Sql_execute=Sql_execute+' )'
+
   
 #username = 'scott'
 #password = 'tiger'
@@ -60,15 +79,6 @@ c = conn.cursor()
 sql = """select * from Alti_PayPal_Mapping"""
 
 
-Sql_execute="insert into Alti_PayPal_Mapping ("
-for j in Table_Column_Name:
-    Sql_execute=Sql_execute+str(j)+', '
-Sql_execute = Sql_execute[:-2]    
-Sql_execute=Sql_execute+' ) values ('
-for i in ls_index:
-    Sql_execute=Sql_execute+':'+str(i)+', '
-Sql_execute = Sql_execute[:-2]
-Sql_execute=Sql_execute+' )'
 
 print(Sql_execute)    
     
