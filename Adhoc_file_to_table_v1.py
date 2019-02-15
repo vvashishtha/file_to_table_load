@@ -92,7 +92,7 @@ Sql_execute=Sql_execute+':Row_Insert_TS,:Row_Insert_TS,:Row_Insert_TS,:Source_Ro
 
 databaseName = "DATATREK"
 #print('vaibhav')
-conn_str = 'etlapp/Et1$ppJDEV654456@janatadev'
+conn_str = 'USERNAME/PASSOWRD@ServiceName'
 try:
     conn = cx_Oracle.connect(conn_str)
 except cx_Oracle.DatabaseError as exception:
