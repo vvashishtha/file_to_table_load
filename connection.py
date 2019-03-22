@@ -47,10 +47,10 @@ ls_index=CompareTwoList(Excel_column_list,Mapping_column_list)
 ls_cols = df_excel.columns.tolist()
 ls_col_list=[]
 
-for j in ls_index:
-    ls_col_list.append(ls_cols[j])
+#for j in ls_index:
+#    ls_col_list.append(ls_cols[j])
     
-df_excel = df_excel[ls_col_list]
+#df_excel = df_excel[ls_col_list]
 
 Sql_execute="insert into Alti_PayPal_Mapping ("
 for j in Table_Column_Name:
@@ -67,7 +67,7 @@ Sql_execute=Sql_execute+' )'
 #password = 'tiger'
 databaseName = "DATATREK"
 print('vaibhav')
-conn_str = 'etlapp/etlappstg@lvsspldb16.qa.paypal.com:2127/QADBAA9O'
+conn_str = 'etlapp/etlappstg@stage2cog02'
 try:
     conn = cx_Oracle.connect(conn_str)
 except cx_Oracle.DatabaseError as exception:
@@ -83,7 +83,7 @@ sql = """select * from Alti_PayPal_Mapping"""
 print(Sql_execute)    
     
   
-c.executemany(Sql_execute, lol, batcherrors = True)
+c.executemany(sql,batcherrors = True)
 for errorObj in c.getbatcherrors():
     print("Row", errorObj.offset, "has error", errorObj.message)
 
